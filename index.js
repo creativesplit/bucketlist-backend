@@ -1,7 +1,6 @@
 const express = require('express')
 const parser = require('body-parser')
 const cors = require('cors')
-// const mongoose = require('./db/model.js')
 const ListItem = require('./db/model.js')
 
 const app = express()
@@ -12,7 +11,7 @@ app.use(cors())
 // app.use(express.static(__dirname + '/client/build'))
 
 // app.get('/', (req,res) => {
-//   res.sendFile(__dirname + /*'/client/buuld/index/html'*/ )
+//   res.sendFile(__dirname + /*'/client/build/index/html'*/ )
 // })
 
 //show bucket list items

@@ -47,6 +47,27 @@ app.get('/api/listItems/:id', (req, res) => {
       console.log(err)
     })
 })
+// delete an item by id
+app.delete('/api/listItems/:id', (req, res) => {
+  ListItem.findByIdAndRemove(req.params.id)
+    .then((newItem) => {
+      res.json(newItem)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+})
+// get an item by id and edit or update
+app.put('/api/listItems/:id', (req, res) => {
+  req.body.complete = req.body.complete ? true : false
+  ListItem.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
+    .then(newItem => {
+      res.json(newItem)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+})
 
 app.listen(app.get('port'), () => {
   console.log('Server listening on port ' + app.get('port'))

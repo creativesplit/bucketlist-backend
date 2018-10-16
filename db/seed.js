@@ -1,6 +1,6 @@
-//const mongoose = require('/connections')
-const ListItem = mongoose.model('ListItem')
-const SeedData = require('./ListItem-data.json') 
+// const mongoose = require('mongoose')
+const ListItem = require('./model.js')
+const SeedData = require('./ListItem-data.json')
 
 ListItem.remove({})
   .then(() => {

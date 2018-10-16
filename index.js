@@ -1,25 +1,25 @@
 const express = require('express')
 const parser = require('body-parser')
 const cors = require('cors')
-const mongoose = require('./db/model.js')
-const ListItem = mongoose.model('ListItem')
+// const mongoose = require('./db/model.js')
+const ListItem = require('./db/model.js')
 
 const app = express()
 
 app.set('port', process.env.PORT || 3001)
 app.use(parser.json())
 app.use(cors())
-app.use(express.static(__dirname + '/client/build'))
+// app.use(express.static(__dirname + '/client/build'))
 
 // app.get('/', (req,res) => {
 //   res.sendFile(__dirname + /*'/client/buuld/index/html'*/ )
 // })
 
 //show bucket list items
-app.get('http://localhost:3001/api/translations', (req, res) => {
+app.get('/api/listItems', (req, res) => {
   ListItem.find()
     .then((newItems) => {
-      res.json(items)
+      res.json(newItems)
     })
     .catch((err) => {
       console.log(err)
@@ -27,10 +27,10 @@ app.get('http://localhost:3001/api/translations', (req, res) => {
 })
 
 //create bucket list item
-app.post('http://localhost:3001/api/translations', (req, res) => {
+app.post('/api/listItems', (req, res) => {
   ListItem.create(req.body)
     .then((newItem) => {
-      res.json(item)
+      res.json(newItem)
     })
     .catch((err) => {
       console.log(err)
@@ -38,10 +38,10 @@ app.post('http://localhost:3001/api/translations', (req, res) => {
 })
 
 //show specific bucket list item
-app.get('http://localhost:3001/api/translations/:id', (req, res) => {
+app.get('/api/listItems/:id', (req, res) => {
   ListItem.findById(req.params.id)
     .then((newItem) => {
-      res.json(item)
+      res.json(newItem)
     })
     .catch((err) => {
       console.log(err)
